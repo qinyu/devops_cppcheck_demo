@@ -6,15 +6,16 @@ project(MyProject)
 find_program(CPPCHECK_EXECUTABLE NAMES cppcheck)
 if(CPPCHECK_EXECUTABLE)
     # 设置Cppcheck的参数
-    set(CPPCHECK_PARAMS "--enable=all")
+    set(CPPCHECK_PARAMS "--enable=all" "--error-exitcode=10")
 
     # 在构建时运行Cppcheck
     add_custom_target(
         cppcheck
         COMMAND ${CPPCHECK_EXECUTABLE} ${CPPCHECK_PARAMS} ${CMAKE_SOURCE_DIR}/src
-        RESULT_VARIABLE CPPCHECK_RESULT
         COMMENT "Running Cppcheck"
     )
+
+    message(STATUS "Cppcheck result: ${CPPCHECK_RESULT}")
 
     # 如果Cppcheck发现了警告或错误，则停止编译
     if(CPPCHECK_RESULT)
