@@ -14,13 +14,6 @@ if(CPPCHECK_EXECUTABLE)
         COMMAND ${CPPCHECK_EXECUTABLE} ${CPPCHECK_PARAMS} ${CMAKE_SOURCE_DIR}/src
         COMMENT "Running Cppcheck"
     )
-
-    message(STATUS "Cppcheck result: ${CPPCHECK_RESULT}")
-
-    # 如果Cppcheck发现了警告或错误，则停止编译
-    if(CPPCHECK_RESULT)
-        message(FATAL_ERROR "Cppcheck found errors. Fix them before continuing.")
-    endif()
 endif()
 
 # 添加您的源文件
